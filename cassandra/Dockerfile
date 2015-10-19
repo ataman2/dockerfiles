@@ -2,6 +2,7 @@ FROM bochen/datastax-base
 MAINTAINER bochen
 
 ENV CASSANDRA_VERSION 2.2.2
+ENV CASSANDRA_CONFIG /etc/cassandra
 
 RUN apt-get install -y \
 		sudo \
@@ -9,8 +10,6 @@ RUN apt-get install -y \
 		dsc22="$CASSANDRA_VERSION"-1 \
 		datastax-agent \
 	&& rm -rf /var/lib/apt/lists/*
-
-ENV CASSANDRA_CONFIG /etc/cassandra
 
 RUN sed -ri 's/^(rpc_address:).*/\1 0.0.0.0/; ' "$CASSANDRA_CONFIG/cassandra.yaml"; \
 	sed -i 's/^start_rpc.*$/start_rpc: true/' "$CASSANDRA_CONFIG/cassandra.yaml"; \

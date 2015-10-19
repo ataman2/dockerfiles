@@ -10,5 +10,6 @@ RUN wget -q -O - http://apache.mirrors.pair.com/zookeeper/zookeeper-"$ZK_VERSION
 
 WORKDIR /opt/zookeeper
 VOLUME ["/tmp/zookeeper"]
+
 EXPOSE 2181 2888 3888
 CMD ["bin/zkServer.sh", "start-foreground"]
