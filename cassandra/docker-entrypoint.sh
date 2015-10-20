@@ -45,7 +45,7 @@ for rackdc in dc rack; do
 	fi
 done
 
-echo "stomp_interface: $OPS_IP" >> /var/lib/datastax-agent/conf/address.yaml
+echo "stomp_interface: opscenter" >> /var/lib/datastax-agent/conf/address.yaml
 echo "use_ssl: 0" >> /var/lib/datastax-agent/conf/address.yaml
 
 exec "$@"
