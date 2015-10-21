@@ -1,4 +1,5 @@
 #!/bin/bash
+
 docker build -t="bochen/datastax-base" datastax-base
 docker build -t="bochen/opscenter:5.2.1" opscenter
 docker build -t="bochen/cassandra:2.2.2" cassandra
