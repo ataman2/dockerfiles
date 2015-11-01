@@ -1,7 +1,7 @@
 FROM bochen/datastax-base
 MAINTAINER bochen
 
-ENV CASSANDRA_VERSION 2.2.2
+ENV CASSANDRA_VERSION 2.2.3
 ENV CASSANDRA_CONFIG /etc/cassandra
 
 RUN apt-get install -y \
