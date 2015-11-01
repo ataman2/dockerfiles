@@ -5,6 +5,7 @@ ENV CASSANDRA_VERSION 2.2.3
 ENV CASSANDRA_CONFIG /etc/cassandra
 
 RUN apt-get install -y \
+                sysstat \
 		sudo \
 		supervisor \
 		dsc22="$CASSANDRA_VERSION"-1 \
