@@ -10,7 +10,7 @@
     </rollingPolicy>
 
     <triggeringPolicy class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">
-      <maxFileSize>100MB</maxFileSize>
+      <maxFileSize>20MB</maxFileSize>
     </triggeringPolicy>
 
     <encoder>
@@ -27,7 +27,7 @@
     </rollingPolicy>
 
     <triggeringPolicy class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">
-      <maxFileSize>100MB</maxFileSize>
+      <maxFileSize>20MB</maxFileSize>
     </triggeringPolicy>
 
     <encoder>
@@ -55,12 +55,12 @@
   <root level="INFO">
     <appender-ref ref="A1"/>
   </root>
-  
+
   <logger name="backtype.storm.messaging.netty">
     <level value="WARN" />
     <appender-ref ref="A1" />
   </logger>
-  
+
   <logger name="backtype.storm">
     <level value="INFO" />
     <appender-ref ref="A1" />

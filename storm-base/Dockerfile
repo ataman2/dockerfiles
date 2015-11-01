@@ -17,10 +17,8 @@ RUN apt-get update \
 	&& chown -R storm:storm /var/log/storm \
 	&& ln -s $STORM_HOME/bin/storm /usr/bin/storm
 
-ADD storm.yaml $STORM_HOME/conf/storm.yaml
-ADD cluster.xml $STORM_HOME/logback/cluster.xml
-ADD config-supervisord.sh /usr/bin/config-supervisord.sh
-ADD start-supervisor.sh /usr/bin/start-supervisor.sh
-
-RUN echo [supervisord] | tee -a /etc/supervisor/supervisord.conf \
-	&& echo nodaemon=true | tee -a /etc/supervisor/supervisord.conf
+COPY supervisord.conf /etc/supervisor/conf.d/
+COPY storm.yaml $STORM_HOME/conf/storm.yaml
+COPY cluster.xml $STORM_HOME/logback/cluster.xml
+COPY config-supervisord.sh /usr/bin/config-supervisord.sh
+COPY start-supervisor.sh /usr/bin/start-supervisor.sh
