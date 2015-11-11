@@ -1,7 +1,7 @@
 FROM bochen/datastax-base
 MAINTAINER bochen
 
-ENV OPS_VERSION 5.2.1
+ENV OPS_VERSION 5.2.2
 
 RUN apt-get download opscenter="$OPS_VERSION" \
 	&& dpkg --unpack opscenter_"$OPS_VERSION"_all.deb \
