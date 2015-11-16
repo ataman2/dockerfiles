@@ -1,6 +1,6 @@
 opscenter:
   container_name: opscenter
-  image: bochen/opscenter:5.2.1
+  image: bochen/opscenter:5.2.2
   ports:
     - "8888:8888"
 
@@ -45,7 +45,7 @@ kafka:
 
 storm-nimbus:
   container_name: storm-nimbus
-  image: bochen/storm-nimbus:0.9.5
+  image: bochen/storm-nimbus:0.9.6
   ports:
     - "3772:3772"
     - "3773:3773"
@@ -55,7 +55,7 @@ storm-nimbus:
 
 storm-ui:
   container_name: storm-ui
-  image: bochen/storm-ui:0.9.5
+  image: bochen/storm-ui:0.9.6
   ports:
     - "9999:8080"
   links:
@@ -63,7 +63,7 @@ storm-ui:
     - zookeeper:zk
 
 storm-supervisor:
-  image: bochen/storm-supervisor:0.9.5
+  image: bochen/storm-supervisor:0.9.6
   ports:
     - "8000"
   links:

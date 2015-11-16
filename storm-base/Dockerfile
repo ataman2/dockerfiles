@@ -1,7 +1,7 @@
 FROM java:8-jre
 MAINTAINER bochen
 
-ENV STORM_VERSION 0.9.5
+ENV STORM_VERSION 0.9.6
 ENV STORM_HOME /opt/apache-storm-$STORM_VERSION
 
 RUN apt-get update \
