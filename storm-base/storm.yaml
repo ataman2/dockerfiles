@@ -1,9 +1,34 @@
+storm.local.hostname: %localhost%
 storm.zookeeper.servers:
   - "%zookeeper%"
+storm.zookeeper.port: 2181
+storm.zookeeper.retry.times: 20
+storm.nimbus.retry.times: 20
+storm.health.check.timeout.ms: 20000
+
 nimbus.host: "%nimbus%"
+nimbus.childopts: "-Xmx256m"
+nimbus.task.timeout.secs: 60
+nimbus.supervisor.timeout.secs: 120
+
+ui.childopts: "-Xmx128m"
+logviewer.childopts: "-Xmx128m"
+
 drpc.servers:
   - "%nimbus%"
 drpc.port: 3772
 drpc.invocations.port: 3773
+drpc.childopts: "-Xmx256m"
+
 supervisor.slots.ports:
   - 6700
+supervisor.childopts: "-Xmx256m"
+supervisor.worker.timeout.secs: 60
+supervisor.monitor.frequency.secs: 5
+supervisor.heartbeat.frequency.secs: 15
+
+worker.heap.memory.mb: 512
+worker.childopts: "-Xms128m -Xmx512m -XX:+UseConcMarkSweepGC -XX:+UseParNewGC -Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.ssl=false -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.local.only=false -Dcom.sun.management.jmxremote.port=9797 -Djava.rmi.server.hostname=%localhost%"
+worker.heartbeat.frequency.secs: 5
+
+task.heartbeat.frequency.secs: 5
