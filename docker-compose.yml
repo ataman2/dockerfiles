@@ -40,12 +40,13 @@ kafka:
     - "9898:9898"
   environment:
     KAFKA_LOG_RETENTION_HOURS: 1
+    KAFKA_LOG_RETENTION_BYTES: 314572800
   links:
     - zookeeper:zk
 
 storm-nimbus:
   container_name: storm-nimbus
-  image: bochen/storm-nimbus:0.9.6
+  image: bochen/storm-nimbus:0.10.0
   ports:
     - "3772:3772"
     - "3773:3773"
@@ -55,7 +56,7 @@ storm-nimbus:
 
 storm-ui:
   container_name: storm-ui
-  image: bochen/storm-ui:0.9.6
+  image: bochen/storm-ui:0.10.0
   ports:
     - "9999:8080"
   links:
@@ -63,7 +64,7 @@ storm-ui:
     - zookeeper:zk
 
 storm-supervisor:
-  image: bochen/storm-supervisor:0.9.6
+  image: bochen/storm-supervisor:0.10.0
   ports:
     - "8000"
   links:

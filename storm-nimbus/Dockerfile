@@ -1,4 +1,4 @@
-FROM bochen/storm-base:0.9.6
+FROM bochen/storm-base:0.10.0
 MAINTAINER bochen
 
 RUN /usr/bin/config-supervisord.sh nimbus
