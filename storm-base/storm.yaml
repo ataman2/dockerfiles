@@ -28,7 +28,7 @@ supervisor.monitor.frequency.secs: 5
 supervisor.heartbeat.frequency.secs: 15
 
 worker.heap.memory.mb: 512
-worker.childopts: "-Xms128m -Xmx512m -XX:+UseConcMarkSweepGC -XX:+UseParNewGC -Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.ssl=false -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.local.only=false -Dcom.sun.management.jmxremote.port=9797 -Djava.rmi.server.hostname=%localhost%"
+worker.childopts: "-Xms%worker_xms% -Xmx%worker_xmx% -XX:+UseConcMarkSweepGC -XX:+UseParNewGC -Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.ssl=false -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.local.only=false -Dcom.sun.management.jmxremote.port=9797 -Djava.rmi.server.hostname=%localhost%"
 worker.heartbeat.frequency.secs: 5
 
 task.heartbeat.frequency.secs: 5

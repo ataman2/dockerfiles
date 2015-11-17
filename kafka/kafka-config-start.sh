@@ -10,7 +10,7 @@ server_properties="${KAFKA_HOME}/config/server.properties"
 server_start_bin="${KAFKA_HOME}/bin/kafka-server-start.sh"
 cd "${KAFKA_HOME}"
 
-sed -i "s/-Xmx1G -Xms1G/-Xmx512m -Xms512m/g" "${server_start_bin}"
+sed -i "s/-Xmx1G -Xms1G/-Xmx"${KAFKA_XMX}" -Xms"${KAFKA_XMS}"/g" "${server_start_bin}"
 
 sed -i "s/#advertised.host.name.*/advertised.host.name=${hostname}/" "${server_properties}"
 

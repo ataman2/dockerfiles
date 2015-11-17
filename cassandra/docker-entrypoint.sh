@@ -5,9 +5,9 @@ export IP=`hostname -i`
 sed -ri 's/^(rpc_address:).*/\1 0.0.0.0/; ' "$CASSANDRA_CONFIG/cassandra.yaml"
 sed -i 's/^start_rpc.*$/start_rpc: true/' "$CASSANDRA_CONFIG/cassandra.yaml"
 
-# reduce heap sizes to 512MB / 128MB
-sed -i 's/#MAX_HEAP_SIZE=\"4G\"/MAX_HEAP_SIZE=\"512M\"/' "$CASSANDRA_CONFIG/cassandra-env.sh"
-sed -i 's/#HEAP_NEWSIZE=\"800M\"/HEAP_NEWSIZE=\"128M\"/' "$CASSANDRA_CONFIG/cassandra-env.sh"
+# change heap sizes
+sed -i 's/#MAX_HEAP_SIZE=\"4G\"/MAX_HEAP_SIZE=\"'${CASSANDRA_XMX}'\"/' "$CASSANDRA_CONFIG/cassandra-env.sh"
+sed -i 's/#HEAP_NEWSIZE=\"800M\"/HEAP_NEWSIZE=\"'${CASSANDRA_XMS}'\"/' "$CASSANDRA_CONFIG/cassandra-env.sh"
 
 # enable insecure JMX
 sed -i 's/^\(LOCAL_JMX=\).*/\1no/' "$CASSANDRA_CONFIG/cassandra-env.sh"

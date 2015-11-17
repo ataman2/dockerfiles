@@ -5,6 +5,9 @@ ENV SCALA_VERSION 2.10
 ENV KAFKA_VERSION 0.8.2.2
 ENV KAFKA_HOME /opt/kafka_$SCALA_VERSION-$KAFKA_VERSION
 
+ENV KAFKA_XMS 512m
+ENV KAFKA_XMX 512m
+
 RUN wget -q -O - http://mirrors.ibiblio.org/apache/kafka/$KAFKA_VERSION/kafka_$SCALA_VERSION-$KAFKA_VERSION.tgz | tar -xzf - -C /opt \
 	&& sed -i 's/zookeeper.connect=localhost:2181/zookeeper.connect=zk:2181/' $KAFKA_HOME/config/server.properties
 

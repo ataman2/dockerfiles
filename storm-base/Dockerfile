@@ -4,6 +4,9 @@ MAINTAINER bochen
 ENV STORM_VERSION 0.9.6
 ENV STORM_HOME /opt/apache-storm-$STORM_VERSION
 
+ENV WORKER_XMS 128m
+ENV WORKER_XMX 512m
+
 RUN apt-get update \
 	&& apt-get install -y \
 		sudo \
