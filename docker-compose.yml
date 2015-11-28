@@ -6,7 +6,7 @@ opscenter:
 
 cassandra:
   container_name: cassandra
-  image: bochen/cassandra:2.2.3
+  image: bochen/cassandra:3.0.0
   ports:
     - "9042:9042"
     - "9160:9160"
@@ -17,7 +17,7 @@ cassandra:
     - opscenter
 
 scalable-cassandra:
-  image: bochen/cassandra:2.2.3
+  image: bochen/cassandra:3.0.0
   environment:
     CASSANDRA_CLUSTER_NAME: Bochen
   links:
