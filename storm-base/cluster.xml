@@ -25,25 +25,21 @@
                 <pattern>${patternMetris}</pattern>
             </PatternLayout>
         </Console>
-
-        <Syslog name="syslog" format="RFC5424" host="localhost" port="514"
-                protocol="UDP" appName="[${sys:daemon.name}]" mdcId="mdc" includeMDC="true"
-                facility="LOCAL5" enterpriseNumber="18060" newLine="true" exceptionPattern="%rEx{full}"
-                messageId="[${sys:user.name}:S0]" id="storm"/>
     </appenders>
 
     <loggers>
-        <Logger name="backtype.storm.security.auth.authorizer" level="info">
+        <Logger name="backtype.storm.security.auth.authorizer" level="off">
             <AppenderRef ref="ACCESS"/>
         </Logger>
 
-        <Logger name="backtype.storm.metric.LoggingMetricsConsumer" level="info">
+        <Logger name="backtype.storm.metric.LoggingMetricsConsumer" level="off">
             <AppenderRef ref="METRICS"/>
         </Logger>
 
+        <Logger name="storm.kafka.PartitionManager" level="error"/>
+
         <root level="info">
             <appender-ref ref="A1"/>
-            <appender-ref ref="syslog"/>
         </root>
     </loggers>
 

@@ -12,7 +12,6 @@ nimbus.task.timeout.secs: 60
 nimbus.supervisor.timeout.secs: 120
 
 ui.childopts: "-Xmx128m"
-logviewer.childopts: "-Xmx128m"
 
 drpc.servers:
   - "%nimbus%"
