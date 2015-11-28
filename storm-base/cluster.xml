@@ -1,79 +1,50 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<configuration scan="true" scanPeriod="60 seconds">
- <appender name="A1" class="ch.qos.logback.core.rolling.RollingFileAppender">
-    <file>/var/log/storm/${logfile.name}</file>
-    <rollingPolicy class="ch.qos.logback.core.rolling.FixedWindowRollingPolicy">
-      <fileNamePattern>/var/log/storm/${logfile.name}.%i</fileNamePattern>
-      <minIndex>1</minIndex>
-      <maxIndex>9</maxIndex>
-    </rollingPolicy>
+<configuration monitorInterval="60">
 
-    <triggeringPolicy class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">
-      <maxFileSize>20MB</maxFileSize>
-    </triggeringPolicy>
+    <properties>
+        <property name="pattern">%d{dd-MM-yyyy HH:mm:ss} %c{1.} [%p] %msg%n</property>
+        <property name="patternMetris">%d %-8r %m%n</property>
+    </properties>
 
-    <encoder>
-      <pattern>%d{dd-MM-yyyy HH:mm:ss} %c{1} [%p] %m%n</pattern>
-    </encoder>
- </appender>
+    <appenders>
+        <Console name="A1" target="SYSTEM_OUT">
+            <PatternLayout>
+                <pattern>${pattern}</pattern>
+            </PatternLayout>
+        </Console>
 
- <appender name="ACCESS" class="ch.qos.logback.core.rolling.RollingFileAppender">
-    <file>/var/log/storm/access.log</file>
-    <rollingPolicy class="ch.qos.logback.core.rolling.FixedWindowRollingPolicy">
-      <fileNamePattern>/var/log/storm/access.log.%i</fileNamePattern>
-      <minIndex>1</minIndex>
-      <maxIndex>9</maxIndex>
-    </rollingPolicy>
+        <Console name="ACCESS" target="SYSTEM_OUT">
+            <PatternLayout>
+                <pattern>${pattern}</pattern>
+            </PatternLayout>
+        </Console>
 
-    <triggeringPolicy class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">
-      <maxFileSize>20MB</maxFileSize>
-    </triggeringPolicy>
+        <Console name="METRICS" target="SYSTEM_OUT">
+            <PatternLayout>
+                <pattern>${patternMetris}</pattern>
+            </PatternLayout>
+        </Console>
 
-    <encoder>
-      <pattern>%d{dd-MM-yyyy HH:mm:ss} %c{1} [%p] %m%n</pattern>
-    </encoder>
-  </appender>
+        <Syslog name="syslog" format="RFC5424" host="localhost" port="514"
+                protocol="UDP" appName="[${sys:daemon.name}]" mdcId="mdc" includeMDC="true"
+                facility="LOCAL5" enterpriseNumber="18060" newLine="true" exceptionPattern="%rEx{full}"
+                messageId="[${sys:user.name}:S0]" id="storm"/>
+    </appenders>
 
-  <appender name="METRICS" class="ch.qos.logback.core.rolling.RollingFileAppender">
-    <file>/var/log/storm/metrics.log</file>
-    <rollingPolicy class="ch.qos.logback.core.rolling.FixedWindowRollingPolicy">
-      <fileNamePattern>metrics.log.%i</fileNamePattern>
-      <minIndex>1</minIndex>
-      <maxIndex>9</maxIndex>
-    </rollingPolicy>
+    <loggers>
+        <Logger name="backtype.storm.security.auth.authorizer" level="info">
+            <AppenderRef ref="ACCESS"/>
+        </Logger>
 
-    <triggeringPolicy class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">
-      <maxFileSize>2MB</maxFileSize>
-    </triggeringPolicy>
+        <Logger name="backtype.storm.metric.LoggingMetricsConsumer" level="info">
+            <AppenderRef ref="METRICS"/>
+        </Logger>
 
-    <encoder>
-      <pattern>%d %-8r %m%n</pattern>
-    </encoder>
-  </appender>
-
-  <root level="INFO">
-    <appender-ref ref="A1"/>
-  </root>
-
-  <logger name="backtype.storm.messaging.netty">
-    <level value="WARN" />
-    <appender-ref ref="A1" />
-  </logger>
-
-  <logger name="backtype.storm">
-    <level value="INFO" />
-    <appender-ref ref="A1" />
-  </logger>
-
-  <logger name="backtype.storm.security.auth.authorizer" additivity="false">
-    <level value="INFO" />
-    <appender-ref ref="ACCESS" />
-  </logger>
-
-  <logger name="backtype.storm.metric.LoggingMetricsConsumer" additivity="false" >
-    <level value="INFO"/>
-    <appender-ref ref="METRICS"/>
-  </logger>
+        <root level="info">
+            <appender-ref ref="A1"/>
+            <appender-ref ref="syslog"/>
+        </root>
+    </loggers>
 
 </configuration>

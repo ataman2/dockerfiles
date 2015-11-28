@@ -16,12 +16,10 @@ RUN apt-get update \
 	&& groupadd storm \
 	&& useradd --gid storm --home-dir /home/storm --create-home --shell /bin/bash storm \
 	&& chown -R storm:storm $STORM_HOME \
-	&& mkdir /var/log/storm \
-	&& chown -R storm:storm /var/log/storm \
 	&& ln -s $STORM_HOME/bin/storm /usr/bin/storm
 
 COPY supervisord.conf /etc/supervisor/conf.d/
 COPY storm.yaml $STORM_HOME/conf/storm.yaml
-COPY cluster.xml $STORM_HOME/logback/cluster.xml
+COPY cluster.xml $STORM_HOME/log4j2/cluster.xml
 COPY config-supervisord.sh /usr/bin/config-supervisord.sh
 COPY start-supervisor.sh /usr/bin/start-supervisor.sh
