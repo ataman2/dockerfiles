@@ -3,7 +3,7 @@
 <configuration monitorInterval="60">
 
     <properties>
-        <property name="pattern">%d{dd-MM-yyyy HH:mm:ss} %c{1.} [%p] %msg%n</property>
+        <property name="pattern">[%d{dd-MM-yyyy HH:mm:ss}] [%c{1.}] [%p] %msg%n</property>
         <property name="patternMetris">%d %-8r %m%n</property>
     </properties>
 

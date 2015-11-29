@@ -12,10 +12,10 @@ RUN wget -q -O - http://mirrors.ibiblio.org/apache/kafka/$KAFKA_VERSION/kafka_$S
 	&& sed -i 's/zookeeper.connect=localhost:2181/zookeeper.connect=zk:2181/' $KAFKA_HOME/config/server.properties
 
 WORKDIR $KAFKA_HOME
-COPY kafka-config-start.sh bin/
+COPY docker-entrypoint.sh bin/
 
 VOLUME ["/tmp/kafka-logs"]
 EXPOSE 9092 9898
 
-ENTRYPOINT ["bin/kafka-config-start.sh"]
+ENTRYPOINT ["bin/docker-entrypoint.sh"]
 CMD ["bin/kafka-server-start.sh", "config/server.properties"]
