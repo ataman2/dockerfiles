@@ -1,0 +1,5 @@
+path.data: /usr/share/elasticsearch/data
+path.logs: /usr/share/elasticsearch/logs
+network.host: 0.0.0.0
+discovery.zen.ping.multicast.enabled: false
+bootstrap.mlockall: false

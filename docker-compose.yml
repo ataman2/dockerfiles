@@ -24,6 +24,23 @@ scalable-cassandra:
     - opscenter
     - cassandra
 
+elasticsearch:
+  container_name: elasticsearch
+  image: bochen/elasticsearch:2.1.0
+  ports:
+    - "9200:9200"
+    - "9300:9300"
+  environment:
+    ES_CLUSTER_NAME: Bochen
+
+scalable-elasticsearch:
+  image: bochen/elasticsearch:2.1.0
+  environment:
+    ES_CLUSTER_NAME: Bochen
+    ES_ENABLE_CLUSTER: 1
+  links:
+    - elasticsearch:es
+
 zookeeper:
   container_name: zookeeper
   image: bochen/zookeeper:3.4.6
@@ -72,3 +89,4 @@ storm-supervisor:
     - zookeeper:zk
     - kafka
     - cassandra
+    - elasticsearch:es
