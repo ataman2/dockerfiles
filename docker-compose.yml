@@ -41,6 +41,14 @@ scalable-elasticsearch:
   links:
     - elasticsearch:es
 
+kibana:
+  container_name: kibana
+  image: bochen/kibana:4.3.0
+  ports:
+    - "5601:5601"
+  links:
+    - elasticsearch:es
+
 zookeeper:
   container_name: zookeeper
   image: bochen/zookeeper:3.4.6
