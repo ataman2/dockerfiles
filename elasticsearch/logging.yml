@@ -17,4 +17,4 @@ appender:
     type: console
     layout:
       type: consolePattern
-      conversionPattern: "[%d{dd-MM-yyyy HH:mm:ss}] [%c] [%p] %m%n"
+      conversionPattern: "[%d{ISO8601}] [%p] [%c{1.}] %m%n"

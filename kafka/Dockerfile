@@ -13,6 +13,7 @@ RUN wget -q -O - http://mirrors.ibiblio.org/apache/kafka/$KAFKA_VERSION/kafka_$S
 
 WORKDIR $KAFKA_HOME
 COPY docker-entrypoint.sh bin/
+COPY log4j.properties config/
 
 VOLUME ["/tmp/kafka-logs"]
 EXPOSE 9092 9898

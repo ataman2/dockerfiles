@@ -17,6 +17,7 @@ RUN apt-get install -y \
 
 COPY docker-entrypoint.sh /
 COPY supervisord.conf /etc/supervisor/conf.d/
+COPY logback.xml $CASSANDRA_CONFIG/
 
 ENTRYPOINT ["/docker-entrypoint.sh"]
 VOLUME ["/var/lib/cassandra"]

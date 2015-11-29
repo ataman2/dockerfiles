@@ -12,7 +12,9 @@ RUN wget -q -O - http://apache.mirrors.pair.com/zookeeper/zookeeper-"$ZK_VERSION
 	&& mkdir -p /tmp/zookeeper
 
 WORKDIR /opt/zookeeper
-VOLUME ["/tmp/zookeeper"]
+COPY log4j.properties conf/
 
+VOLUME ["/tmp/zookeeper"]
 EXPOSE 2181 2888 3888
+
 CMD ["bin/zkServer.sh", "start-foreground"]

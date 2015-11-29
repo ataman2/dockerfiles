@@ -1,0 +1,20 @@
+<configuration scan="true">
+  <jmxConfigurator />
+  <shutdownHook class="ch.qos.logback.core.hook.DelayingShutdownHook"/>
+
+  <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+    <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+      <level>INFO</level>
+    </filter>
+    <encoder>
+      <pattern>[%d{ISO8601}] [%level] [%logger{15}] %msg%n</pattern>
+    </encoder>
+  </appender>
+
+  <root level="INFO">
+    <appender-ref ref="STDOUT" />
+  </root>
+
+  <logger name="org.apache.cassandra" level="DEBUG"/>
+  <logger name="com.thinkaurelius.thrift" level="ERROR"/>
+</configuration>
