@@ -14,6 +14,9 @@ RUN echo "deb http://packages.elastic.co/elasticsearch/2.x/debian stable main" >
 WORKDIR $ES_HOME
 RUN mkdir config data logs
 
+RUN bin/plugin install license
+RUN bin/plugin install marvel-agent
+
 COPY docker-entrypoint.sh bin/
 COPY elasticsearch.yml config/
 COPY logging.yml config/
