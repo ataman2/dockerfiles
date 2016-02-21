@@ -1,7 +1,7 @@
 FROM java:8-jre
 MAINTAINER bochen
 
-ENV ES_VERSION 2.1.0
+ENV ES_VERSION 2.2.0
 ENV ES_HOME /usr/share/elasticsearch
 ENV ES_HEAP_SIZE 512m
 

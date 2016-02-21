@@ -2,11 +2,12 @@ FROM java:8-jre
 MAINTAINER bochen
 
 ENV KIBANA_VERSION 4.4.0
+ENV MARVEL_VERSION 2.2.0
 ENV KIBANA_HOME /opt/kibana-$KIBANA_VERSION-linux-x64
 
 RUN wget -q -O - https://download.elastic.co/kibana/kibana/kibana-${KIBANA_VERSION}-linux-x64.tar.gz | tar -xzf - -C /opt \
     && sed -i -e "s/# elasticsearch.url: \"http:\/\/localhost:9200\"/elasticsearch.url: \"http:\/\/es:9200\"/g" $KIBANA_HOME/config/kibana.yml \
-    && $KIBANA_HOME/bin/kibana plugin --install elasticsearch/marvel/latest \
+    && $KIBANA_HOME/bin/kibana plugin --install elasticsearch/marvel/${MARVEL_VERSION} \
 	&& $KIBANA_HOME/bin/kibana plugin --install elastic/sense \
 	&& groupadd -r kibana \
     && useradd -r -m -g kibana kibana \
