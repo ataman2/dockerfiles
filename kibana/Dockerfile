@@ -1,7 +1,7 @@
 FROM java:8-jre
 MAINTAINER bochen
 
-ENV KIBANA_VERSION 4.3.0
+ENV KIBANA_VERSION 4.4.0
 ENV KIBANA_HOME /opt/kibana-$KIBANA_VERSION-linux-x64
 
 RUN wget -q -O - https://download.elastic.co/kibana/kibana/kibana-${KIBANA_VERSION}-linux-x64.tar.gz | tar -xzf - -C /opt \
